@@ -138,8 +138,8 @@ export function validateEdfHeader(data: Uint8Array, header: EdfHeader): Validati
   const drRaw = Array.from(data.slice(236, 244)).map(b => String.fromCharCode(b)).join('').trim();
   if (!isInteger(drRaw)) {
     err('data record count', `"${drRaw}" is not a valid integer.`);
-  } else if (header.numDataRecords < 1) {
-    err('data record count', `Value is ${header.numDataRecords}; expected > 0.`);
+  } else if (header.numDataRecords !== -1 && header.numDataRecords < 1) {
+    err('data record count', `Value is ${header.numDataRecords}; expected > 0 (or -1 for unknown/continuous).`);
   }
 
   // ── Record duration ───────────────────────────────────────────────────────
@@ -388,8 +388,8 @@ export function validateRawHeader(data: Uint8Array): ValidationIssue[] {
   const drRaw = ascii(236, 8).trim();
   if (!/^\s*[+-]?\d+\s*$/.test(drRaw)) {
     err('data record count', `"${drRaw}" is not a valid integer.`);
-  } else if (parseInt(drRaw, 10) < 1) {
-    err('data record count', `Value is ${drRaw}; expected > 0.`);
+  } else if (parseInt(drRaw, 10) !== -1 && parseInt(drRaw, 10) < 1) {
+    err('data record count', `Value is ${drRaw}; expected > 0 (or -1 for unknown/continuous).`);
   }
 
   const rdRaw = ascii(244, 8).trim();

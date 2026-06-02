@@ -103,8 +103,9 @@ async function readHeaderBytes(uri: vscode.Uri): Promise<Uint8Array> {
     try {
       fd = fs.openSync(uri.fsPath, 'r');
       const fixed = Buffer.alloc(256);
-      if (fs.readSync(fd, fixed, 0, 256, 0) < 256) {
-        resolve(fixed); return;
+      const fixedRead = fs.readSync(fd, fixed, 0, 256, 0);
+      if (fixedRead < 256) {
+        resolve(fixed.subarray(0, fixedRead)); return;
       }
       const ns = parseInt(fixed.subarray(252, 256).toString('ascii').trim(), 10);
       if (isNaN(ns) || ns <= 0 || ns > 512) { resolve(fixed); return; }
@@ -372,14 +373,14 @@ function buildPreviewHtml(uri: vscode.Uri, h: EdfHeader, issues: ValidationIssue
   <div class="card">
     <div class="card-header">Patient identification</div>
     <div class="card-body mono">
-      ${h.patientId || '<span class="muted">not specified</span>'}
+      ${h.patientId ? esc(h.patientId) : '<span class="muted">not specified</span>'}
     </div>
   </div>
 
   <div class="card">
     <div class="card-header">Recording identification</div>
     <div class="card-body mono">
-      ${h.recordingId || '<span class="muted">not specified</span>'}
+      ${h.recordingId ? esc(h.recordingId) : '<span class="muted">not specified</span>'}
     </div>
   </div>
 
@@ -482,6 +483,7 @@ function buildPreviewHtml(uri: vscode.Uri, h: EdfHeader, issues: ValidationIssue
     container.appendChild(canvas);
 
     var ctx = canvas.getContext('2d');
+    if (!ctx) { return; }
     ctx.scale(dpr, dpr);
 
     /* ── Time axis ─────────────────────────────────── */
