@@ -4,6 +4,11 @@ A VS Code extension that previews the header of **EDF**, **BDF**, **EDF+** and *
 
 Opening any `.edf` or `.bdf` file shows a structured, readable summary of the file header — without loading the full recording into memory.
 
+
+<img width="1446" height="831" alt="Scherm­afbeelding 2026-06-02 om 03 20 59" src="https://github.com/user-attachments/assets/e748b3e7-a6cf-4c51-88e2-328798d1b1c0" />
+
+<img width="565" height="630" alt="Scherm­afbeelding 2026-06-02 om 03 21 15" src="https://github.com/user-attachments/assets/f3e79626-0ebf-42a0-b2dc-fc430dc4ba67" />
+
 ---
 
 ## Features
