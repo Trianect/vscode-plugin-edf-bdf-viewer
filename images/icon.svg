@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background gradient: dark navy -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0%" stop-color="#1c1f3a"/>
+      <stop offset="100%" stop-color="#111326"/>
+    </linearGradient>
+    <!-- Wave glow -->
+    <filter id="glow" x="-20%" y="-40%" width="140%" height="180%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="128" height="128" rx="22" ry="22" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines (horizontal) -->
+  <line x1="10" y1="46" x2="118" y2="46" stroke="#ffffff" stroke-width="0.4" opacity="0.06"/>
+  <line x1="10" y1="58" x2="118" y2="58" stroke="#ffffff" stroke-width="0.4" opacity="0.06"/>
+
+  <!-- EEG / biosignal waveform across the upper half -->
+  <!-- Baseline segments + a spike in the middle (like a characteristic EEG burst) -->
+  <polyline
+    points="
+      8,52
+      22,52
+      27,52
+      30,28
+      33,72
+      36,52
+      46,52
+      50,38
+      54,66
+      58,52
+      72,52
+      76,34
+      80,70
+      84,52
+      98,52
+      101,44
+      105,60
+      108,52
+      120,52
+    "
+    fill="none"
+    stroke="#4dd0e1"
+    stroke-width="2.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#glow)"
+    opacity="0.95"
+  />
+
+  <!-- Thin separator line -->
+  <line x1="12" y1="82" x2="116" y2="82" stroke="#ffffff" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- "EDF" label — blue -->
+  <text
+    x="37"
+    y="112"
+    font-family="'Arial Black', 'Arial', 'Helvetica Neue', sans-serif"
+    font-weight="900"
+    font-size="24"
+    letter-spacing="0.5"
+    fill="#64b5f6"
+    text-anchor="middle"
+    dominant-baseline="auto"
+  >EDF</text>
+
+  <!-- Divider slash -->
+  <text
+    x="64"
+    y="112"
+    font-family="Arial, sans-serif"
+    font-weight="300"
+    font-size="22"
+    fill="#ffffff"
+    opacity="0.25"
+    text-anchor="middle"
+  >/</text>
+
+  <!-- "BDF" label — purple -->
+  <text
+    x="91"
+    y="112"
+    font-family="'Arial Black', 'Arial', 'Helvetica Neue', sans-serif"
+    font-weight="900"
+    font-size="24"
+    letter-spacing="0.5"
+    fill="#ce93d8"
+    text-anchor="middle"
+    dominant-baseline="auto"
+  >BDF</text>
+
+  <!-- Small "+" superscript to hint at EDF+/BDF+ support -->
+  <text
+    x="118"
+    y="92"
+    font-family="Arial, sans-serif"
+    font-weight="700"
+    font-size="11"
+    fill="#ffffff"
+    opacity="0.35"
+    text-anchor="middle"
+  >+</text>
+</svg>

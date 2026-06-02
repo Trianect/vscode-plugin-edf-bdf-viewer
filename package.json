@@ -1,0 +1,66 @@
+{
+  "name": "edf-bdf-viewer",
+  "displayName": "EDF / BDF Viewer",
+  "description": "Preview EDF, BDF, EDF+ and BDF+ biosignal file headers in VS Code",
+  "version": "0.1.0",
+  "publisher": "trianect",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Data Science",
+    "Visualization"
+  ],
+  "keywords": [
+    "EDF",
+    "BDF",
+    "EEG",
+    "biosignal",
+    "neuroscience",
+    "EDF+",
+    "BDF+"
+  ],
+  "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trianect/VSCODE-EdfBdfPlugin"
+  },
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "edfBdfViewer.preview",
+        "displayName": "EDF/BDF Header Preview",
+        "selector": [
+          {
+            "filenamePattern": "*.edf"
+          },
+          {
+            "filenamePattern": "*.bdf"
+          },
+          {
+            "filenamePattern": "*.EDF"
+          },
+          {
+            "filenamePattern": "*.BDF"
+          }
+        ],
+        "priority": "default"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.74.0",
+    "@vscode/vsce": "^2.32.0",
+    "typescript": "^5.0.0"
+  }
+}
